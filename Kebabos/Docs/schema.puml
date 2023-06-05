@@ -1,0 +1,58 @@
+@startuml kebabos
+
+entity Store {
+' uuid
+  * id : string
+  * name : string
+  * status: StoreStatus
+}
+
+entity Ingredient {
+  * id : string
+  * name : string
+  * status: IngredientStatus
+}
+
+enum StoreStatus {
+  * OPEN
+  * CLOSED
+}
+
+enum IngredientStatus {
+  * AVAILABLE
+  * UNAVAILABLE
+}
+
+Store ||--o{ Ingredient
+
+entity User {
+' uuid
+  * id : string
+  * name : string
+}
+
+entity StoreRating {
+' uuid
+  * id : string
+  ' rating: 0-5
+  * rating : number
+  * statusAccuracy : number
+  * comment : string
+}
+
+User ||--o{ StoreRating
+StoreRating }o--|| Store
+
+entity IngredientRating {
+' uuid
+  * id : string
+  ' rating: 0-5
+  * rating : number
+  * statusAccuracy : number
+  * comment : string
+}
+
+User ||--o{ IngredientRating
+IngredientRating }o--|| Ingredient
+
+@enduml
